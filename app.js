@@ -2,10 +2,10 @@ const http = require('http');
  
 const { Pool } = require('pg');
 const pool = new Pool({
- host: 'server ip',
- database: 'database name',
- user: 'user name',
- password: 'password',
+ host: process.env.HOST,
+ database: process.env.DB,
+ user: process.env.USER,
+ password: process.env.PASS,
  port: '5432',
 });
 pool.query('SELECT NOW()', (err, res) => {
@@ -21,7 +21,7 @@ const server = http.createServer((req, res) => {
  res.statusCode = 200;
  res.setHeader('Content-Type', 'text/plain');
  console
- res.end(JSON.stringify(error), JSON.stringify(result));
+ res.end(JSON.stringify(result));
 });
  
 server.listen(port, hostname, () => {
