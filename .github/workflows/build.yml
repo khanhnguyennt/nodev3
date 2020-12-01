@@ -1,0 +1,29 @@
+name: Build docker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform-job:
+    runs-on: ubuntu-latest	
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+   
+    - name: Docker login
+      run: |
+        aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 371835366947.dkr.ecr.ap-southeast-1.amazonaws.com
+      env:
+        AWS_DEFAULT_REGION: 'ap-southeast-1'
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+       
+    - name: Docker build
+      run: |
+        docker build -t 371835366947.dkr.ecr.ap-southeast-1.amazonaws.com/nodever3:$GITHUB_SHA .
+               
+    - name: Docker push
+      run: |
+        docker push 371835366947.dkr.ecr.ap-southeast-1.amazonaws.com/nodever3:$GITHUB_SHA
