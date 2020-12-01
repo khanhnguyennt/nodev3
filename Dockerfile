@@ -4,7 +4,6 @@ RUN mkdir /khanh
 
 COPY app.js /khanh/app.js
 COPY package.json /khanh/package.json
-RUN cd /khanh
-RUN npm install
+RUN cd /khanh && npm install
 
 ENTRYPOINT [ "node", "/khanh/app.js" ]
