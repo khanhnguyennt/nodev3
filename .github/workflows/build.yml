@@ -22,8 +22,8 @@ jobs:
        
     - name: Docker build
       run: |
-        docker build -t 371835366947.dkr.ecr.ap-southeast-1.amazonaws.com/nodever3:$GITHUB_SHA .
+        docker build -t 371835366947.dkr.ecr.ap-southeast-1.amazonaws.com/nodever4:$GITHUB_SHA .
                
     - name: Docker push
       run: |
-        docker push 371835366947.dkr.ecr.ap-southeast-1.amazonaws.com/nodever3:$GITHUB_SHA
+        docker push 371835366947.dkr.ecr.ap-southeast-1.amazonaws.com/nodever4:$GITHUB_SHA
