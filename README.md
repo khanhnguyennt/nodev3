@@ -1,1 +1,1 @@
-"# nodev3" 
+Simple NodeJs app connects to database
